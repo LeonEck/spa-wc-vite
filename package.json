@@ -1,0 +1,24 @@
+{
+  "name": "spa-wc-vite",
+  "version": "1.0.0",
+  "description": "Single Page Application (SPA) demo using web components powered by vite.",
+  "author": "Leon Eck",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonEck/spa-wc-vite.git"
+  },
+  "engines": {
+    "node": "^16.13.0"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@types/html-minifier": "4.0.2",
+    "html-minifier": "4.0.0",
+    "sass": "1.52.1",
+    "vite": "2.9.9"
+  }
+}
