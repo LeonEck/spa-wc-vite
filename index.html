@@ -25,21 +25,30 @@
       }
     </style>
     <script type="module">
-      document.querySelectorAll('[data-route]').forEach((routerLink) => {
-        routerLink.addEventListener('click', (event) => {
-          event.preventDefault();
-          const path = event.target.dataset.route;
-          window.history.pushState({}, '', path);
-          route(path);
+      window['routerLinkSetup'] = (queryTarget) => {
+        queryTarget.querySelectorAll('[data-route]').forEach((routerLink) => {
+          routerLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            const path = event.target.dataset.route;
+            const params = event.target.dataset.routeparams;
+            if (params) {
+              window.history.pushState({}, '', `${path}?${params}`);
+            } else {
+              window.history.pushState({}, '', path);
+            }
+            route(path);
+          });
         });
-      });
+      }
+
+      routerLinkSetup(document);
 
       window.addEventListener('popstate', (event) => {
         event.preventDefault();
         route(window.location.pathname);
       });
 
-      function route(page) {
+      window['route'] = (page) => {
         switch (page) {
           case '/one':
             import('./src/page-one/page-one').then(() => {
