@@ -11,4 +11,13 @@ export class AppPageTwoComponent extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot?.appendChild(template.content.cloneNode(true));
   }
+
+  connectedCallback() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const number = urlParams.get('number');
+    if (number) {
+      this.shadowRoot?.querySelector('app-content')?.setAttribute('number', number);
+    }
+  }
 }
